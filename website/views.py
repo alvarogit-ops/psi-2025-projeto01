@@ -1,38 +1,24 @@
 from django.shortcuts import render
 
-# Create your views here.
+def inicio(request):
+    contexto = {
+        'info_geral': 'Stranger Things é uma série de suspense e ficção científica da Netflix, criada pelos Irmãos Duffer. Situada nos anos 80, a trama acompanha o desaparecimento de um garoto e o surgimento de uma garota com poderes sobrenaturais.',
+        'imagem_url': 'imagens/grupo.jpg',
+    }
+    return render(request, "website/inicio.html", contexto)
 
-def index(request):
-    return render(request, "website/index.html")
+def equipe(request):
+    elenco = [
+        {'nome': 'Millie Bobby Brown', 'idade': 20, 'posicao': 'Eleven', 'local': 'Marbella, Espanha', 'foto': 'imagens/millie.jpg'},
+        {'nome': 'Finn Wolfhard', 'idade': 21, 'posicao': 'Mike Wheeler', 'local': 'Vancouver, Canadá', 'foto': 'imagens/finn.jpg'},
+        # ... acrescente os outros 9 membros aqui
+    ]
+    contexto = {'elenco': elenco}
+    return render(request, "website/equipe.html", contexto)
 
 def sobre(request):
-    return(render(request, "website/sobre.html"))
-
-def post(request):
-    return(render(request, "website/post.html"))
-
-def contato(request):
-    return(render(request, "website/post.html"))
-
-"""""
-def index(request):
-    postagens = [
-        {
-            "id": 1,
-            "titulo": "Minha primeira postagem",
-            "subtitulo": "Nessa postagem o conteúdo é muito importante.",
-            "autor": "James Wilson",
-            "data": "27 de junho de 2025"
-        },
-        {
-            "id": 2,
-            "titulo": "Minha segunda postagem",
-            "subtitulo": "Outra postagem interessante.",
-            "autor": "Ana Souza",
-            "data": "28 de junho de 2025"
-        }
-    ]
-    return render(request, "website/index.html", {"postagens": postagens})
-
-"""""
-
+    info_site = {
+        'descricao': 'Este é um projeto fictício criado para fins educacionais. Desenvolvido por Seu Nome.',
+        'autores': ['Seu Nome', 'Outro Autor'],
+    }
+    return render(request, "website/sobre.html", {'info_site': info_site})
