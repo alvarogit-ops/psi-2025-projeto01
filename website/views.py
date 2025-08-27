@@ -1,24 +1,29 @@
 from django.shortcuts import render
+from website.models import Contexto, Elenco, Info_Site
 
 def inicio(request):
-    contexto = {
-        'info_geral': 'Stranger Things é uma série de suspense e ficção científica da Netflix, criada pelos Irmãos Duffer. Situada nos anos 80, a trama acompanha o desaparecimento de um garoto e o surgimento de uma garota com poderes sobrenaturais.',
-        'imagem_url': 'imagens/grupo.jpg',
-    }
-    return render(request, "website/inicio.html", contexto)
+    contexto_objeto = Contexto.objects.first()
+    contexto  = {}
+    
+    if contexto_objeto:
+        contexto = {
+            'info_geral': contexto_objeto.info_geral,
+          
+        }
+
+    return render(request, "website/inicio.html", {'contexto': contexto})
 
 def equipe(request):
-    elenco = [
-        {'nome': 'Millie Bobby Brown', 'idade': 20, 'posicao': 'Eleven', 'local': 'Marbella, Espanha', 'foto': 'imagens/millie.jpg'},
-        {'nome': 'Finn Wolfhard', 'idade': 21, 'posicao': 'Mike Wheeler', 'local': 'Vancouver, Canadá', 'foto': 'imagens/finn.jpg'},
-        # ... acrescente os outros 9 membros aqui
-    ]
+    elenco = Elenco.objects.all()       
     contexto = {'elenco': elenco}
     return render(request, "website/equipe.html", contexto)
 
 def sobre(request):
-    info_site = {
-        'descricao': 'Este é um projeto fictício criado para fins educacionais. Desenvolvido por Seu Nome.',
-        'autores': ['Seu Nome', 'Outro Autor'],
+    info_site = Info_Site.objects.first()
+    contexto = {}
+    if info_site:
+        contexto = {
+        'descricao:': info_site.descricao,
+        'autores': info_site.get_autores_list(),
     }
-    return render(request, "website/sobre.html", {'info_site': info_site})
+    return render(request, "website/sobre.html", {'info_site': contexto})

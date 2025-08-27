@@ -1,9 +1,13 @@
-{% extends 'website/base.html' %}
-{% block content %}
-<h2>Bem-vindo ao mundo de Stranger Things</h2>
-<p>Stranger Things é uma série de suspense e ficção científica da Netflix, criada pelos Irmãos Duffer. Situada nos anos 80, a trama acompanha o desaparecimento de um garoto e o surgimento de uma garota com poderes sobrenaturais.</p>
-<img src="imagens/grupo.jpg" alt="Elenco principal" width="600">
-{% endblock %}
-   
- 
-  
+    {% extends 'website/base.html' %}
+    {% block content %}
+    <h2>Bem-vindo ao mundo de Stranger Things</h2>
+    {% if contexto %}
+    <p>{{ contexto.info_geral }}</p>
+    {% else %}
+    <p>Nenhuma informação encontrada.</p>
+    {% endif %}
+
+    {% endblock %}
+    
+    
+    

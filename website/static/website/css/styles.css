@@ -1,10 +1,18 @@
 body {
-  font-family: Arial, sans-serif;
+   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
+  display: flex; /* ESSENCIAL: Ativa o Flexbox */
+  flex-direction: column; /* ESSENCIAL: Organiza os filhos em coluna */
+  min-height: 100vh; /* ESSENCIAL: Garante que o body ocupe no mínimo a altura da tela */
   background-color: #111;
   color: #eee;
 }
+
+.container{
+  flex-grow: 1;
+}
+
 
 header {
   background-color: #e50914;
@@ -21,6 +29,8 @@ nav a {
 
 main {
   padding: 20px;
+  flex-grow: 1;
+  width: 35%;
 }
 
 footer {
@@ -28,8 +38,6 @@ footer {
   color: #aaa;
   text-align: center;
   padding: 10px;
-  position: fixed; 
-}
 
 .elenco {
   display: flex;
